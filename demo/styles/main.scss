@@ -1,75 +1,224 @@
-@import 'flexboxgrid';
+@import '../../flexbox-grid/flexboxgrid';
 
-@mixin b($color: green) { 
-    border: 1px dotted $color;
+h1, h2, h3, h4, h5, h6 {
+    font-family: Gibson,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    color: #001A33;
+}
+h2 {
+    color: rgb(0, 26, 51);
+    font-family: Gibson, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 22.4px;
+    margin-bottom: 16px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 16px;
+}
+pre {
+
+    overflow-x: auto;
+    padding: 1.25em;
+    border: 1px solid #e6e6e6;
+        border-left-width: 1px;
+    border-left-width: 5px;
+    margin: 1.6em 0;
+    font-size: .875em;
+    background: #fcfcfc;
+    white-space: pre;
+    word-wrap: normal;
+
+}
+code {
+
+    color: #007FFF;
+
+}
+code, kbd, pre, samp {
+
+    font-family: monospace,serif;
+    font-size: 1em;
+
+}
+
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 400;
+    background: #EEE;
+    line-height: 1.4rem;
+}
+header {
+    padding: 2rem;
+    background: #FFF;
+    border: 1px solid #FFF;
+    border-radius: 2px;
+    text-align: center;
+    p {
+        font-size: 1rem;
+        margin-bottom: 0;
+        padding: 0 2rem;
+        text-align: center;
+    }
 }
 
 
-.header, .section-1, .section-2, .footer {
-    @include b;
-}
-.item {
-    @include b(red);
+.main {
+    @include grid-container;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    
+
+    .box-col {
+        position: relative;
+        min-height: 1rem;
+        margin-bottom: 0;
+        background: #007FFF;
+        border: 1px solid #FFF;
+        border-radius: 2px;
+        overflow: hidden;
+        text-align: center;
+        color: #fff;
+
+        margin-bottom: 1rem;
+        @media (min-width: 768px) {
+            padding: 1rem;
+        }
+    }
+
+    .responsive {
+        .row-1, .row-2, .row-3, .row-4 {
+            @include grid-row();
+        }
+        .row-1 {
+            
+            .col-1 {
+                @include grid-col((
+                    xs: 12,
+                    sm: 3,
+                    md: 2,
+                    lg: 1
+                ));
+            }
+            .col-2 {
+                @include grid-col((
+                    xs: 6,
+                    sm: 6,
+                    md: 8,
+                    lg: 10,
+                ));
+            }
+            .col-3 {
+                @include grid-col((
+                    xs: 6,
+                    sm: 3,
+                    md: 2,
+                    lg: 1,
+                ));
+            }
+        }
+        .row-2 {
+            .col-1 {
+                @include grid-col((
+                    xs: 12,
+                    sm: 3,
+                    md: 2,
+                    lg: 1,
+                ));
+            }
+            .col-2 {
+                @include grid-col((
+                    xs: 12,
+                    sm: 9,
+                    md: 10,
+                    lg: 11,
+                ));
+            }
+        }
+        .row-3 {
+            .col-1 {
+                @include grid-col((
+                    xs: 10,
+                    sm: 6,
+                    md: 8,
+                    lg: 10,
+                ));
+            }
+            .col-2 {
+                @include grid-col((
+                    xs: 2,
+                    sm: 6,
+                    md: 4,
+                    lg: 2,
+                ));
+            }
+        }
+        .row-4 {
+            .col {
+                @include grid-col();
+            }
+        }
+    }
+    .offsets {
+        .row {
+            @include grid-row();
+            .col-1 {
+                @include grid-col(xs,1,11);
+            }
+            .col-2 {
+                @include grid-col(xs,2,10);
+            }
+            .col-3 {
+                @include grid-col(xs,3,9);
+            }
+            .col-4 {
+                @include grid-col(xs,4,8);
+            }
+            .col-5 {
+                @include grid-col(xs,5,7);
+            }
+            .col-6 {
+                @include grid-col(xs,6,6);
+            }
+
+            .col-7 {
+                @include grid-col(xs,7,5);
+            }
+            .col-8 {
+                @include grid-col(xs,8,4);
+            }
+            .col-9 {
+                @include grid-col(xs,9,3);
+            }
+            .col-10 {
+                @include grid-col(xs,10,2);
+            }
+            .col-11 {
+                @include grid-col(xs,11,1);
+            }
+        }
+    }
+    .auto-width {
+        .row {
+            @include grid-row();
+                .col {
+                    @include grid-col();
+                }
+           
+        }
+    }
+    .nested-grids {
+        .row {
+            @include grid-row();
+            .col {
+                @include grid-col();
+            }
+        }
+
+    }
 }
 
-/* 
-*       GRID
-*/
-.container {
-    @extend %container-fluid;
-}
-.header {
-    
-    @include grid-row();
-    @include grid-row(sm,center);
-    .item-1, .item-2, .item-3, .item-4 {
-        @include grid-col(xs,12);
-        @include grid-col(sm,2);
-        height: 100px;
-        background-color: lavenderblush;
-    }
-    
-}
-.section-1 {
-    @include grid-row();
-    @include grid-row(sm, start);
-    @include grid-row(lg, end);
-    .item-1, .item-2, .item-3, .item-4 {
-        @include grid-col(xs,12);
-        @include grid-col(sm,3);
-        height: 100px;
-        background-color: lawngreen;
-    }
-}
-.section-2 {
-    @include grid-row();
-    .item-1 {
-        @include grid-col(xs,12);
-        @include grid-col(sm,2);
-        height: 100px;
-        background-color: lightcoral;
-    }
-    .item-2 {
-        @include grid-col(xs,12);
-        @include grid-col(sm,10);
-        height: 100px;
-        background-color: lightcoral;
-    }
-    
-}
-.footer {
-    @include grid-row($justify-content: center);
-    .item-1 {
-        @include grid-col(xs,12);
-        @include grid-col(sm,6);
-        height: 100px;
-        background-color: royalblue;
-    }
-    .item-2 {
-        @include grid-col(xs,12);
-        @include grid-col(sm,2,4);
-        height: 100px;
-        background-color: royalblue;
-    }
-    
-}
+

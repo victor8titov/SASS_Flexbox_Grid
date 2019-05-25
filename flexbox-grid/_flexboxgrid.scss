@@ -1,8 +1,325 @@
-@import 'settings';
-@import 'row';
-@import 'col';
+/* 
+*
+*   VARIABLES GRID
+* -----------------
+*
+*/
+
+$columns: 12;
+  $gap: 15px;
 
 
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+
+/* 
+*
+*    Mixin for setting container
+*  -------------------------------
+*    
+*/
+
+@mixin grid-container-fluid {
+  /* grid container-fluid */
+  width: 100%;
+  padding-right: $gap;
+  padding-left: $gap;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin grid-container {
+  
+  /*  grid container  */
+  width: 100%;
+  padding-right: $gap;
+  padding-left: $gap;
+  margin-right: auto;
+  margin-left: auto;  
+  
+  @media (min-width: 576px) {
+    & {
+      /*  grid container  */
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    & {
+      /*  grid container  */
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    & {
+      /*  grid container  */
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    & {
+      /*  grid container  */
+      max-width: 1140px;
+    }
+  }
+}
+  
+  
+/* 
+*
+*   Mixin for setting row
+* -------------------------
+*
+*/
+@mixin multi-call-row($extend) {
+  @each $key, $value in $extend {
+    @include grid-row($key, $value...);
+  }
+}
+@mixin grid-row($extend: xs, $justify-content: 0, $align-items: 0, $text-align: 0, $direction: null) {
+  @if type-of($extend) == map { @include multi-call-row($extend) }    
+  @if $extend == xs {
+      /*  grid setting row xs */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+
+      -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      
+      margin-right: - $gap;
+      margin-left: - $gap;
+
+      @include alignment($justify-content, $align-items, $text-align);
+      @if $direction { @include grid-direction($direction)};
+  } @else if $extend == sm {
+      @media (min-width: 576px) {
+          /*  grid setting row sm        */
+          @include alignment($justify-content, $align-items, $text-align);
+          @if $direction { @include grid-direction($direction)};
+      }
+  } @else if $extend == md {
+      @media (min-width: 768px) {
+          /*  grid setting row md       */
+          @include alignment($justify-content, $align-items, $text-align);
+          @if $direction { @include grid-direction($direction)};
+      }
+  } @else if $extend == lg {
+      @media (min-width: 992px) {
+          /*  grid setting row lg       */
+          @include alignment($justify-content, $align-items, $text-align);
+          @if $direction { @include grid-direction($direction)};
+      }
+  } @else if $extend == xl {
+      @media (min-width: 1200px) {
+          /*  grid setting row xl        */
+          @include alignment($justify-content, $align-items, $text-align);
+          @if $direction { @include grid-direction($direction)};
+      }
+  } 
+  
+}
+
+@mixin grid-direction($direction) {
+  /* grid direction #{$direction} */
+  @if $direction == 'row-reverse' {
+      -ms-flex-direction: row-reverse;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: reverse;
+      flex-direction: row-reverse;
+  } @else if $direction == 'column-reverse' {
+      -ms-flex-direction: column-reverse;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+      flex-direction: column-reverse;
+  } @else if $direction == 'column' {
+      -ms-flex-direction: column;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+  } @else if $direction == 'row' {
+      -ms-flex-direction: row;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      flex-direction: row;
+  }
+}
+
+@mixin alignment($justify-content, $align-items, $text-align) {
+  @if $justify-content == start {
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      
+  } @else if $justify-content == end {
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      
+  } @else if $justify-content == center {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      
+  } @else if $justify-content == space-around {
+      -ms-flex-pack: distribute;
+      justify-content: space-around;
+  } @else if $justify-content == space-between {
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+  }
+
+  @if $align-items == start {
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+  } @else if $align-items == center {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+  } @else if $align-items == end {
+      -webkit-box-align: end;
+      -ms-flex-align: end;
+      align-items: flex-end;
+  } @else if $align-items == stretch {
+      align-items: stretch;
+  } @else if $align-items == baseline {
+      align-items: baseline;
+  } 
+
+  @if $text-align == left or $text-align == start {
+      text-align: start;
+  } @else if $text-align == right or $text-align == end {
+      text-align: end;
+  } @else if $text-align == center  {
+      text-align: center;
+  } @else if $text-align == justify {
+      text-align: justify;
+  }
+}
+
+
+/* 
+*
+*   Mixin for setting column
+* ----------------------------
+*
+*/
+ 
+@mixin multi-call-col($extend) {
+  @each $key, $value in $extend {
+    @include grid-col($key, $value...);
+  }
+}
+
+ @mixin grid-col($extend: xs, $col: 'auto', $offset: 0, $order: null ) {
+   @if type-of($extend) == map { @include multi-call-col($extend) }
+  @if $extend == xs {
+      /* grid column setting xs */
+      padding-right: $gap;
+      padding-left: $gap;
+
+      @include grid-width($col);
+      @include grid-offset($offset);
+      @include grid-order($order);
+  } @else if $extend == sm {
+      @media (min-width: 575px) {
+           /* grid column setting sm */
+          @include grid-width($col);
+          @include grid-offset($offset);
+          @include grid-order($order);
+      }
+  } @else if $extend == md {
+      @media (min-width: 768px) {
+           /* grid column setting md */
+          @include grid-width($col);
+          @include grid-offset($offset);
+          @include grid-order($order);
+      }
+  } @else if $extend == lg {
+      @media (min-width: 992px) {
+           /* grid column setting lg */
+          @include grid-width($col);
+          @include grid-offset($offset);
+          @include grid-order($order);
+      }
+  }  @else if $extend == xl {
+      @media (min-width: 1200px) {
+           /* grid column setting xl */
+          @include grid-width($col);
+          @include grid-offset($offset);
+          @include grid-order($order);
+      }
+  }  @else if $extend == 'auto' {
+       /* grid column setting auto */
+          -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+          width: auto;
+          max-width: 100%;
+
+          @include grid-offset($offset);
+          @include grid-order($order);
+  } 
+}
+
+@mixin grid-width($col) {
+ 
+  @if $col == 'auto' {
+      /* grid auto column */
+      -ms-flex-positive: 1;
+      -webkit-flex-grow: 1;
+      -webkit-box-flex: 1;
+      flex-grow: 1;
+
+      -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+      max-width: 100%;
+  } @else {
+      $width: 100% / $columns * $col;
+      /* grid #{$col} column */
+      -ms-flex: 0 0 $width;
+      -webkit-box-flex: 0;
+      flex: 0 0 $width;
+      max-width: $width;
+  }
+}
+@mixin grid-offset($offset) {
+  @if $offset != 0 {
+      /* grid offset #{$offset} */
+      margin-left: 100% / $columns * $offset;
+  }    
+}
+@mixin grid-order($order) {
+  @if $order != null {
+      /* grid order #{$order} */
+      -webkit-box-ordinal-group: $order+1;
+      -ms-flex-order: $order;
+      order: $order;
+  }
+  
+}
 
 
 

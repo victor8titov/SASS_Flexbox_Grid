@@ -5,43 +5,356 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/main.css">
-    <title>Document</title>
+    <title>Sass Flexbox Grid</title>
 </head>
 <body>
-    <div class="container">
-        <section class="header">
-            <div class="item-1 item">                
+<header name="header">
+    <h1 >Sass Flexbox Grid</h1>
+    <p>A grid system based on the flex display property.</p>
+    <a href="#">button</a>
+</header>
+<section class="main">
+    <!-- responsive -->
+    <section class="page-section responsive">
+        <h2>Responsive</h2>
+        <p>Responsive modifiers enable specifying different column sizes, offsets, alignment and distribution at xs, sm, md, lg  &amp; xl viewport widths.</p>
+        
+        <div class="row row-1">
+            <div class="col col-1">
+                <div class="box-col"></div>
             </div>
-            <div class="item-2 item"></div>
-            <div class="item-3 item"></div>
-            <div class="item-4 item"></div>
-            <div class="item-5 item"></div>
-            <div class="item-6 item"></div>
-        </section>
-        <section class="section-1">
-            <div class="item-1 item"></div>
-            <div class="item-2 item"></div>
-            <div class="item-3 item"></div>
-            <div class="item-4 item"></div>
-            <div class="item-5 item"></div>
-            <div class="item-6 item"></div>
-        </section>
-        <section class="section-2">
-            <div class="item-1 item"></div>
-            <div class="item-2 item"></div>
-            <div class="item-3 item"></div>
-            <div class="item-4 item"></div>
-            <div class="item-5 item"></div>
-            <div class="item-6 item"></div>
-        </section>
-        <section class="footer">
-            <div class="item-1 item"></div>
-            <div class="item-2 item"></div>
-            <div class="item-3 item"></div>
-            <div class="item-4 item"></div>
-            <div class="item-5 item"></div>
-            <div class="item-6 item"></div>
-        </section>
-    </div>
+            <div class="col col-2">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-3">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-2">
+            <div class="col col-1">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-2">
+                <div class="box-col"></div>
+            </div>
+            
+        </div>
+        <div class="row row-3">
+            <div class="col col-1">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-2">
+                <div class="box-col"></div>
+            </div>
+            
+        </div>
+
+        <div class="row row-4">
+            <div class="col col-1">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-2">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-3">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-4">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        
+        
+        <pre>
+            <code>
+               
+.row-1, .row-2, .row-3, .row-4 {
+    @include grid-row();
+}
+.row-1 {
+    
+    .col-1 {
+        @include grid-col((
+            xs: 12,
+            sm: 3,
+            md: 2,
+            lg: 1
+        ));
+    }
+    .col-2 {
+        @include grid-col((
+            xs: 6,
+            sm: 6,
+            md: 8,
+            lg: 10,
+        ));
+    }
+    .col-3 {
+        @include grid-col((
+            xs: 6,
+            sm: 3,
+            md: 2,
+            lg: 1,
+        ));
+    }
+}
+.row-2 {
+    .col-1 {
+        @include grid-col((
+            xs: 12,
+            sm: 3,
+            md: 2,
+            lg: 1,
+        ));
+    }
+    .col-2 {
+        @include grid-col((
+            xs: 12,
+            sm: 9,
+            md: 10,
+            lg: 11,
+        ));
+    }
+}
+.row-3 {
+    .col-1 {
+        @include grid-col((
+            xs: 10,
+            sm: 6,
+            md: 8,
+            lg: 10,
+        ));
+    }
+    .col-2 {
+        @include grid-col((
+            xs: 2,
+            sm: 6,
+            md: 4,
+            lg: 2,
+        ));
+    }
+}
+.row-4 {
+    .col {
+        @include grid-col();
+    }
+}
+
+            </code>
+        </pre>
+    </section>
+    <!-- offsets -->
+    <section class="page-section offsets">
+        <h2>Offsets</h2>
+        <p>Offset a column</p>
+        <div class="row row-1">
+            <div class="col-1">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-2">
+            <div class="col-2">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-3">
+            <div class="col-3">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-4">
+            <div class="col-4">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-5">
+            <div class="col-5">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-6">
+            <div class="col-6">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-7">
+            <div class="col-7">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-8">
+            <div class="col-8">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-9">
+            <div class="col-9">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-10">
+            <div class="col-10">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-11">
+            <div class="col-11">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        
+        
+        <pre>
+            <code>
+            .row {
+                @include grid-row();
+                .col-1 {
+                    @include grid-col(xs,1,11);
+                }
+                .col-2 {
+                    @include grid-col(xs,2,10);
+                }
+                .col-3 {
+                    @include grid-col(xs,3,9);
+                }
+                .col-4 {
+                    @include grid-col(xs,4,8);
+                }
+                .col-5 {
+                    @include grid-col(xs,5,7);
+                }
+                .col-6 {
+                    @include grid-col(xs,6,6);
+                }
+    
+                .col-7 {
+                    @include grid-col(xs,7,5);
+                }
+                .col-8 {
+                    @include grid-col(xs,8,4);
+                }
+                .col-9 {
+                    @include grid-col(xs,9,3);
+                }
+                .col-10 {
+                    @include grid-col(xs,10,2);
+                }
+                .col-11 {
+                    @include grid-col(xs,11,1);
+                }
+            }
+            
+            </code>
+        </pre>
+    </section>  
+    <!-- auto-width -->      
+    <section class="page-section auto-width">
+        <h2>Auto Width</h2>
+        <p>Add any number of auto sizing columns to a row. Let the grid figure it out.</p>
+
+        <div class="row row-1">
+            <div class="col col-1">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-2">
+                <div class="box-col"></div>
+            </div>
+        </div>
+        <div class="row row-2">
+            <div class="col col-1">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-2">
+                <div class="box-col"></div>
+            </div>
+            <div class="col col-3">
+                <div class="box-col"></div>
+            </div>
+        </div>
+
+        <pre><code>
+    .row {
+        @include grid-row();
+            .col {
+                @include grid-col();
+            }
+        
+    }
+        </code></pre>
+    </section>
+    <!-- nested grids -->
+    <section class="page-section nested-grids">
+        <h2>Nested Grids</h2>
+        <p>Nest grids inside grids inside grids.</p>
+        <div class="row">
+            <div class="col-1 col">
+                <div class="box-col">
+                    <div class="row">
+                        <div class="col-11 col">
+                            <div class="box-col">
+                                <div class="row">
+                                    <div class="col-111 col">
+                                        <div class="box-col"></div>
+                                    </div>
+                                    <div class="col-112 col">
+                                        <div class="box-col"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col">
+                            <div class="box-col"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 col">
+                <div class="box-col">
+                    <div class="row">
+                        <div class="col col-21">
+                            <div class="row">
+                                <div class="col col-211">
+                                    <div class="box-col"></div>
+                                </div>
+                                <div class="col col-212">
+                                    <div class="box-col"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- alignment -->
+    <section class="page-section alignment">
+        <h2>Alignment</h2>
+        <p>Add classes to align elements to the start or end of a row as well as the top, bottom, or center of a column</p>
+        <h3>.start-</h3>
+        <h3>.center-</h3>
+        <h3>.end-</h3>
+        
+    </section>
+    <!-- Distribution -->
+    <section class="page-section distribution">
+        <h2>Distribution</h2>
+        <p>Add classes to distribute the contents of a row or column.
+
+        </p>
+    </section>
+    <!-- Reordering -->
+    <section class="page-section reordering">
+        <h2>Reordering</h2>
+        <p>Add classes to reorder columns.</p>
+
+    </section>
+    <section class="page-section reversing">
+        <h2>Reversing</h2>
+        <h3>.reverse</h3>
+    </section>
+</section>
+<footer>
+    <a href="#">mail to</a><a href="#header">back to top</a>
+</footer>
 </body>
 </html>
