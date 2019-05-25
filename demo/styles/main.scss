@@ -1,12 +1,36 @@
 @import '../../flexbox-grid/flexboxgrid';
 
+$gap: 0.5em;
+
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 400;
+    background: #EEE;
+    //line-height: 1.4rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: Gibson,HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-family: 'Exo 2', HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
     color: #001A33;
+}
+h1 {
+    text-align: center;
+    font-size: 6rem;
+    margin-bottom: 2rem;
+    
+}
+h1 + p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+    text-align: center;
 }
 h2 {
     color: rgb(0, 26, 51);
-    font-family: Gibson, HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 32px;
     font-weight: 700;
     line-height: 22.4px;
@@ -15,8 +39,22 @@ h2 {
     margin-right: 0px;
     margin-top: 16px;
 }
+h2 + p {
+    margin: 0 0 2rem;
+}
+h3 {
+    color: #007FFF;
+    font-family: monospace,serif;
+    font-size: 1em;
+}
+p {
+    font-size: 1rem;
+    line-height: 23px;
+    margin-bottom: 0;
+    text-align: left;
+}
 pre {
-
+       
     overflow-x: auto;
     padding: 1.25em;
     border: 1px solid #e6e6e6;
@@ -37,33 +75,51 @@ code {
 code, kbd, pre, samp {
 
     font-family: monospace,serif;
-    font-size: 1em;
 
 }
 
-body {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-size: 18px;
-    font-family: HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-    font-weight: 400;
-    background: #EEE;
-    line-height: 1.4rem;
+.content {
+    position: relative;
+    min-height: 1rem;
+    margin-bottom: 0;
+    
+    border: 1px solid #FFF;
+    border-radius: 2px;
+    overflow: hidden;
+    text-align: center;
+    color: #fff;
+
+    
+
+    margin-bottom: 1rem;
+    @media (min-width: 768px) {
+        padding: 1rem;
+    }
+
 }
+.blue {
+    background: #007FFF;
+}
+.blue-middle {
+    background: #06C;
+    border-color: #007FFF;
+}
+.blue-hard {
+    background: #036;
+    border-color: #007FFF;
+}
+
 header {
     padding: 2rem;
     background: #FFF;
     border: 1px solid #FFF;
     border-radius: 2px;
     text-align: center;
-    p {
-        font-size: 1rem;
-        margin-bottom: 0;
-        padding: 0 2rem;
-        text-align: center;
-    }
+    
 }
+
+
+
 
 
 .main {
@@ -72,22 +128,7 @@ header {
     padding-left: 2rem;
     
 
-    .box-col {
-        position: relative;
-        min-height: 1rem;
-        margin-bottom: 0;
-        background: #007FFF;
-        border: 1px solid #FFF;
-        border-radius: 2px;
-        overflow: hidden;
-        text-align: center;
-        color: #fff;
-
-        margin-bottom: 1rem;
-        @media (min-width: 768px) {
-            padding: 1rem;
-        }
-    }
+    
 
     .responsive {
         .row-1, .row-2, .row-3, .row-4 {
@@ -211,6 +252,10 @@ header {
         }
     }
     .nested-grids {
+        .content {
+            padding: 1rem;
+            margin-bottom: 0;
+        }
         .row {
             @include grid-row();
             .col {
@@ -219,6 +264,41 @@ header {
         }
 
     }
+    .alignment {
+        .row-start {
+            @include grid-row;
+            .row-sub {
+                @include grid-row($justify-content: start);
+            }
+            
+        }
+        .col-1 {
+            @include grid-col;
+        }
+        .col-11 {
+            @include grid-col(xs, 6);
+        }
+        .row-center {
+            @include grid-row;
+            .row-sub {
+                @include grid-row($justify-content: center);
+            }
+            
+        }
+        .row-end {
+            @include grid-row;
+            .row-sub {
+                @include grid-row($justify-content: end);
+            }
+            
+        }
+        
+        
+    }
+    .distribution {}
+    .reordering {}
+    .reversing {}
+
 }
 
 
