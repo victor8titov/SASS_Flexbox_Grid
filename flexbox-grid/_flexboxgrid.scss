@@ -1,9 +1,5 @@
-/* 
-*
-*   VARIABLES GRID
-* -----------------
-*
-*/
+//   VARIABLES GRID
+//  -----------------
 
 $columns: 12;
   $gap: 15px;
@@ -22,12 +18,10 @@ html {
 
 
 
-/* 
-*
-*    Mixin for setting container
-*  -------------------------------
-*    
-*/
+
+
+// *    Mixin for setting container
+// *  -------------------------------
 
 @mixin grid-container-fluid {
   /* grid container-fluid */
@@ -77,12 +71,10 @@ html {
 }
   
   
-/* 
-*
-*   Mixin for setting row
-* -------------------------
-*
-*/
+// *   Mixin for setting row
+// * -------------------------
+
+
 @mixin multi-call-row($extend) {
   @each $key, $value in $extend {
     @include grid-row($key, $value...);
@@ -221,13 +213,11 @@ html {
 }
 
 
-/* 
-*
-*   Mixin for setting column
-* ----------------------------
-*
-*/
- 
+// *   Mixin for setting column
+// * ----------------------------
+
+
+
 @mixin multi-call-col($extend) {
   @each $key, $value in $extend {
     @include grid-col($key, $value...);
